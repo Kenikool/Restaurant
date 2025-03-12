@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
   orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
   address: { type: String },
   phone: { type: String },
+  isAdmin: { type: Boolean, default: false }, // Added isAdmin field
 });
 
 module.exports = mongoose.model("User", UserSchema);

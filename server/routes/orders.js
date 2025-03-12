@@ -8,6 +8,9 @@ const auth = require("../middleware/auth");
 // @desc    Create a new order
 // @access  Private (User) - To be implemented later
 router.post("/", auth, async (req, res) => {
+  if (!req.user.isAdmin) {
+    return res.status(403).json({ msg: "Forbidden: Admin access required" });
+  }
   try {
     const newOrder = new Order(req.body);
     const order = await newOrder.save();
